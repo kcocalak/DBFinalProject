@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home_page') }}"><--Back to home</a></li>
+          <li><a href="{{ url_for('food_groups_page') }}"><--Back to food group list</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <meta charset="UTF-8">
+    <title>Form Group Contains List</title>
+</head>
+<body>
+<h3>Food Groups List</h3>
+<table border = 1>
+         <thead>
+<!--            <td>Id</td>-->
+            <td>Short Description</td>
+            <td>Nitrogen</td>
+            <td>Protein</td>
+            <td>Fat</td>
+            <td>Calorie</td>
+</thead>
+
+         {% for row in rows %}
+            <tr>
+               <td><a href="/food/{{row['id']}}">{{row["short_desc"]}}</a></td>
+               <td><a href="/food/{{row['id']}}">{{row["nitrogen_factor"]}}</a></td>
+               <td><a href="/food/{{row['id']}}">{{row["protein_factor"]}}</a></td>
+               <td><a href="/food/{{row['id']}}">{{row["fat_factor"]}}</a></td>
+               <td><a href="/food/{{row['id']}}">{{row["calorie_factor"]}}</a></td>
+            </tr>
+         {% endfor %}
+      </table>
+
+</body>
+</html>

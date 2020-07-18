@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home_page') }}"><--Back to home</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <meta charset="UTF-8">
+    <title>Form Group List</title>
+</head>
+<body>
+<h3>Food Groups List</h3>
+<table border = 1>
+         <thead>
+<!--            <td>Id</td>-->
+            <td>Name</td>
+         </thead>
+
+         {% for row in rows %}
+            <tr>
+               <td><a href="/food-group/{{row['id']}}">{{row["name"]}}</a></td>
+            </tr>
+         {% endfor %}
+      </table>
+
+</body>
+</html>
