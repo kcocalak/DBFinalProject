@@ -18,11 +18,61 @@
 </head>
 <body>
 <h3>Food List</h3>
+<div>
+   <table border = 1>
+         <thead>
+            <td>Food Group</td>
+            <td>Short Description</td>
+            <td>Long Description</td>
+            <td>Manufacturer</td>
+            <td>Scientific Name</td>
 
-<h4>Food Group: </h4> {{rows["name"]}}
+</thead>
+            <tr>
+               <td>{{rows["name"]}}</td>
+               <td>{{rows["short_desc"]}}</td>
+               <td>{{rows["long_desc"]}}</td>
+               <td>{{rows["manufac_name"]}}</td>
+               <td>{{rows["sci_name"]}}</td>
+
+            </tr>
+      </table>
+<!--<h4>Food Group: </h4> {{rows["name"]}}
 <h4>Short Description: </h4> {{rows["short_desc"]}}
 <h4>Long Description: </h4> {{rows["long_desc"]}}
 <h4>Manufacturer: </h4> {{rows["manufac_name"]}}
-<h4>Scientific Name: </h4> {{rows["sci_name"]}}
+<h4>Scientific Name: </h4> {{rows["sci_name"]}}-->
+</div>
+
+
+<div>
+    <h3>Weight Information</h3>
+
+    {% for weight in weights %}
+    <li>
+        {{weight["gm_weight"]}} grams in {{weight["amount"]}} {{weight["description"]}}
+    </li>
+    {% endfor %}
+</div>
+
+<div>
+   <table border = 1>
+         <thead>
+            <td>Nutrients</td>
+            <td>Energy</td>
+
+</thead>
+
+         {% for nutrient in nutrients %}
+            <tr>
+               <td>{{nutrient["name"]}}</td>
+               <td>{{nutrient["amount"]}}</td>
+            </tr>
+         {% endfor %}
+
+</table>
+
+</div>
+
 </body>
 </html>

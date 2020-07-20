@@ -36,12 +36,26 @@ def food_group_contains_page(id):
 def food_page(id):
     conn = sqlite3.connect(DATABASE)
     conn.row_factory = sqlite3.Row
-
     cur = conn.cursor()
-    cur.execute("SELECT f.*,fg.name FROM food f LEFT JOIN food_group fg ON f.food_group_id=fg.id WHERE f.id = ? ", (id,))
-    rows = cur.fetchone()
+    cur.execute("SELECT f.*,fg.name FROM food f LEFT JOIN food_group fg ON f.food_group_id=fg.id WHERE f.id=?", (id,))
+    foods = cur.fetchone()
     cur.close()
-    return render_template("food_page.html", rows=rows)
+
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    cur.execute("SELECT f.*,w.gm_weight,w.amount,w.description FROM food f LEFT JOIN weight w ON f.id=w.food_id WHERE f.id=?", (id,))
+    weights = cur.fetchall()
+    cur.close()
+
+    conn = sqlite3.connect(DATABASE)
+    conn.row_factory = sqlite3.Row
+    cur = conn.cursor()
+    cur.execute("SELECT f.*,nut.amount,net.name FROM food f LEFT JOIN nutrition nut ON f.id=nut.food_id LEFT JOIN nutrient net ON nut.nutrient_id=net.id WHERE f.id=?", (id,))
+    nutrients = cur.fetchall()
+    cur.close()
+
+    return render_template("food_page.html", rows=foods, weights=weights, nutrients=nutrients)
 
 
 @app.route("/food-edit/<id>", methods=['POST', 'GET'])
@@ -58,9 +72,10 @@ def food_edit_page(id):
         conn = sqlite3.connect(DATABASE)
         conn.row_factory = sqlite3.Row
         cur = conn.cursor()
-        cur.execute("SELECT f.*,fg.name FROM food f LEFT JOIN food_group fg ON f.food_group_id=fg.id WHERE f.id = ? ", (id,))
+        cur.execute("SELECT f.*,fg.name FROM food f LEFT JOIN food_group fg ON f.food_group_id=fg.id WHERE f.id = ?", (id,))
         rows = cur.fetchone()
         cur.close()
+
         return render_template("edit_page.html", groups=groups, rows=rows)
 
     elif request.method == 'POST':
@@ -70,36 +85,41 @@ def food_edit_page(id):
         manuf = request.form['manufacturer_name']
         sci_name = request.form['sci_name']
 
-        conn = sqlite3.connect(DATABASE, timeout=20)
-        cur = conn.cursor()
-
         if foodGroup is not None and foodGroup != 0:
             conn = sqlite3.connect(DATABASE, timeout=20)
             cur = conn.cursor()
             cur.execute("UPDATE food SET food_group_id=? WHERE id = ?", (foodGroup, id,))
             conn.commit()
+            cur.close()
+
         if shortDescription is not None and shortDescription != "":
             conn = sqlite3.connect(DATABASE, timeout=20)
             cur = conn.cursor()
             cur.execute("UPDATE food SET short_desc=? WHERE id = ?", (shortDescription, id,))
             conn.commit()
+            cur.close()
+
         if longDesc is not None and longDesc != "":
             conn = sqlite3.connect(DATABASE, timeout=20)
             cur = conn.cursor()
             cur.execute("UPDATE food SET long_desc=? WHERE id = ?", (longDesc, id,))
             conn.commit()
+            cur.close()
+
         if manuf is not None and manuf != "":
             conn = sqlite3.connect(DATABASE, timeout=20)
             cur = conn.cursor()
-            conn.commit()
             cur.execute("UPDATE food SET manufac_name=? WHERE id = ?", (manuf, id,))
+            conn.commit()
+            cur.close()
+
         if sci_name is not None and sci_name != "":
             conn = sqlite3.connect(DATABASE, timeout=20)
             cur = conn.cursor()
             cur.execute("UPDATE food SET sci_name=? WHERE id = ?", (sci_name, id,))
             conn.commit()
+            cur.close()
 
-        cur.close()
         return redirect(url_for('food_page', id=id))
 
 
