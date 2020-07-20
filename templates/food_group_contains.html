@@ -1,37 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"/>
 <head>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="{{ url_for('home_page') }}"><--Back to home</a></li>
-          <li><a href="{{ url_for('food_groups_page') }}"><--Back to food group list</a></li>
-        </ul>
-      </nav>
-    </header>
+<style>
+body .navbar-item{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 100vw;
+    height: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: url("../static/images/background.jpg");*/
+    overflow: hidden;
+    background-size: cover;
+    color: azure;
+    text-align: center;
+    }
+body .navbar-item2 {
+    width: 100vw;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: url("../static/images/background.jpg");*/
+    overflow: hidden;
+    background-size: cover;
+    color: black;
+    }
+body .navbar-item3 {
+    width: 100vw;
+    /*height: 30vh;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: url("../static/images/background.jpg");*/
+    overflow: hidden;
+    /*background-size: cover;*/
+    color: black;
+    }
+h3 {
+    text-align: center;
+    font-weight: bold;
+}
+table {
+    align-self: center;
+}
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+    thead{
+        font-weight: bold;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    td {
+        padding: 20px;
+    }
+</style>
 
     <meta charset="UTF-8">
     <title>Form Group Contains List</title>
 </head>
 <body>
+<span class="navbar-item">
+            <a class="button" href="{{ url_for('home_page') }}"><--Back to home</a>
+            <a class="button" href="{{ url_for('food_groups_page') }}"><--Back to food group list</a>
+    </span>
 <h3>Food Groups List</h3>
-<table border = 1>
+
+<table>
          <thead>
 <!--            <td>Id</td>-->
-            <td>Short Description</td>
-            <td>Nitrogen</td>
-            <td>Protein</td>
-            <td>Fat</td>
-            <td>Calorie</td>
+            <td style="padding: 20px" >Short Description</td>
+            <td style="padding: 20px">Nitrogen</td>
+            <td style="padding: 20px">Protein</td>
+            <td style="padding: 20px">Fat</td>
+            <td style="padding: 20px">Calorie</td>
 </thead>
 
          {% for row in rows %}
             <tr>
-               <td><a href="/food/{{row['id']}}">{{row["short_desc"]}}</a></td>
-               <td>{{row["nitrogen_factor"]}}</td>
-               <td>{{row["protein_factor"]}}</td>
-               <td>{{row["fat_factor"]}}</td>
-               <td>{{row["calorie_factor"]}}</td>
+               <td style="padding: 20px" ><a href="/food/{{row['id']}}">{{row["short_desc"]}}</a></td>
+               <td style="padding: 20px">{{row["nitrogen_factor"]}}</td>
+               <td style="padding: 20px">{{row["protein_factor"]}}</td>
+               <td style="padding: 20px">{{row["fat_factor"]}}</td>
+               <td style="padding: 20px">{{row["calorie_factor"]}}</td>
             </tr>
          {% endfor %}
       </table>

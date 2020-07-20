@@ -1,25 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"/>
 <head>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="{{ url_for('home_page') }}"><--Back to home</a></li>
-            <li><a href="{{ url_for('food_groups_page') }}"><--Back to food group list</a></li>
-        </ul>
-        <ul>
-            <li><a href="/food-edit/{{rows['id']}}">EDIT</a></li>
-        </ul>
-      </nav>
-    </header>
+<style>
+body .navbar-item{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 100vw;
+    height: 1vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: url("../static/images/background.jpg");*/
+    overflow: hidden;
+    background-size: cover;
+    color: azure;
+    }
+body .navbar-item2 {
+    width: 100vw;
+    height: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: url("../static/images/background.jpg");*/
+    overflow: hidden;
+    background-size: cover;
+    color: black;
+    }
+body .navbar-item3 {
+    width: 100vw;
+    /*height: 30vh;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: url("../static/images/background.jpg");*/
+    overflow: hidden;
+    /*background-size: cover;*/
+    color: black;
+    }
+h3 {
+    text-align: center;
+    font-weight: bold;
+}
 
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    tr:hover {
+        background-color: #ddd;
+    }
+    thead{
+        font-weight: bold;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    td {
+        padding: 20px;
+    }
+</style>
     <meta charset="UTF-8">
     <title>Food List</title>
 </head>
 <body>
-<h3>Food List</h3>
-<div>
-   <table border = 1>
+<span class="navbar-item">
+            <a class="button" href="{{ url_for('home_page') }}"><--Back to home</a>
+            <a class="button" href="{{ url_for('food_groups_page') }}"><--Back to food group list</a>
+            <a class="button" href="/food-edit/{{rows['id']}}">EDIT</a>
+    </span>
+
+<h3 class="h3">Food List</h3>
+<span class="navbar-item2">
+   <table>
          <thead>
             <td>Food Group</td>
             <td>Short Description</td>
@@ -37,31 +89,28 @@
 
             </tr>
       </table>
-<!--<h4>Food Group: </h4> {{rows["name"]}}
-<h4>Short Description: </h4> {{rows["short_desc"]}}
-<h4>Long Description: </h4> {{rows["long_desc"]}}
-<h4>Manufacturer: </h4> {{rows["manufac_name"]}}
-<h4>Scientific Name: </h4> {{rows["sci_name"]}}-->
-</div>
+  </span>
 
-
-<div>
+<div class="navbar-item2">
     <h3>Weight Information</h3>
+<table>
+    <tr>
 
-    {% for weight in weights %}
-    <li>
-        {{weight["gm_weight"]}} grams in {{weight["amount"]}} {{weight["description"]}}
-    </li>
+    </tr>
+     {% for weight in weights %}
+        <td>{{weight["gm_weight"]}} grams in {{weight["amount"]}} {{weight["description"]}}</td>
     {% endfor %}
+</table>
+
 </div>
 
-<div>
-   <table border = 1>
+<span class="navbar-item3">
+   <table>
          <thead>
-            <td>Nutrients</td>
-            <td>Energy</td>
+            <td style="padding: 20px">Nutrients</td>
+            <td style="padding: 20px">Energy</td>
 
-</thead>
+        </thead>
 
          {% for nutrient in nutrients %}
             <tr>
@@ -72,7 +121,7 @@
 
 </table>
 
-</div>
+</span>
 
 </body>
 </html>

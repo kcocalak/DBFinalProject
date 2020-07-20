@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home Page</title>
-</head>
+    <head>
+        <title>Home Page</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" type="text/css" href="static/homepage.css">
+    </head>
 <body>
-<nav>
-        <ul>
-          <li><a href="{{ ('food-group-list') }}">Go to food groups --></a></li>
-        </ul>
-      </nav>
-<h3>Welcome!!</h3>
+<div class = "card">
+    <div class="card-image">
+            <!--<div class="card-action">
+                <a href="{{ ('food-group-list') }}">Food Groups</a>
+            </div>-->
+    </div>
+    <div class="card-text">
+        <h2>Database Course Final Project</h2>
+        <span class="navbar-item">
+            <a class="button" href="{{ ('food-group-list') }}">Food Groups</a>
+          </span>
+    </div>
+    <div class="card-stats"></div>
+</div>
 
 </body>
+<footer>
+    <small>&copy; 2020, N. Kağan Çocalak</small>
+</footer>
 </html>

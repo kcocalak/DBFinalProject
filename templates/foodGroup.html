@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css"/>
 <head>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="{{ url_for('home_page') }}"><--Back to home</a></li>
-        </ul>
-      </nav>
-    </header>
-
     <meta charset="UTF-8">
     <title>Form Group List</title>
 </head>
 <body>
-<h3>Food Groups List</h3>
-<table border = 1>
+<div class="card">
+    <span class="navbar-item">
+            <a class="button" href="{{ url_for('home_page') }}"><--Back to home</a>
+    </span>
+<h3 style="padding: 20px">Food Groups List</h3>
+<table style="padding: 20px">
          <thead>
 <!--            <td>Id</td>-->
-            <td>Name</td>
+            <td style="padding: 20px">Name</td>
          </thead>
 
          {% for row in rows %}
             <tr>
-               <td><a href="/food-group/{{row['id']}}">{{row["name"]}}</a></td>
+               <td style="padding: 20px"><a href="/food-group/{{row['id']}}">{{row["name"]}}</a></td>
             </tr>
          {% endfor %}
       </table>
+
+</div>
 
 </body>
 </html>
