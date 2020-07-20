@@ -28,10 +28,10 @@
          {% for row in rows %}
             <tr>
                <td><a href="/food/{{row['id']}}">{{row["short_desc"]}}</a></td>
-               <td><a href="/food/{{row['id']}}">{{row["nitrogen_factor"]}}</a></td>
-               <td><a href="/food/{{row['id']}}">{{row["protein_factor"]}}</a></td>
-               <td><a href="/food/{{row['id']}}">{{row["fat_factor"]}}</a></td>
-               <td><a href="/food/{{row['id']}}">{{row["calorie_factor"]}}</a></td>
+               <td>{{row["nitrogen_factor"]}}</td>
+               <td>{{row["protein_factor"]}}</td>
+               <td>{{row["fat_factor"]}}</td>
+               <td>{{row["calorie_factor"]}}</td>
             </tr>
          {% endfor %}
       </table>

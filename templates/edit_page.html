@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Food Informations</title>
+</head>
+<body>
+    <form action = "/food-edit/{{ rows['id'] }}" method = "POST">
+         <h3></h3>
+         Food Group<br>
+        <select name="foodGroup">
+            {% for group in groups %}z
+            <option value="{{group['id']}}">
+                {{ group["name"] }}
+            </option>
+            {% endfor %}
+        </select>
+        </br>
+
+         Short Description<br>
+         <input type = "text" name = "shortDescription" ><br>
+
+         Long Description<br>
+         <input type = "text" name = "longDesc" /><br>
+
+         Manufacturer<br>
+         <input type = "text" name = "manufacturer_name" /><br>
+
+         Scientific Name<br>
+         <input type = "text" name = "sci_name" /><br>
+
+         <input type = "submit" value = "submit" /><br>
+      </form>
+</body>
+</html>

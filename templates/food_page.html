@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('home_page') }}"><--Back to home</a></li>
+            <li><a href="{{ url_for('food_groups_page') }}"><--Back to food group list</a></li>
+        </ul>
+        <ul>
+            <li><a href="/food-edit/{{rows['id']}}">EDIT</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <meta charset="UTF-8">
+    <title>Food List</title>
+</head>
+<body>
+<h3>Food List</h3>
+
+<h4>Food Group: </h4> {{rows["name"]}}
+<h4>Short Description: </h4> {{rows["short_desc"]}}
+<h4>Long Description: </h4> {{rows["long_desc"]}}
+<h4>Manufacturer: </h4> {{rows["manufac_name"]}}
+<h4>Scientific Name: </h4> {{rows["sci_name"]}}
+</body>
+</html>
